@@ -1,0 +1,7 @@
+[Unit]
+Description=Despliega MottoForma si main tiene commits nuevos
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/mottoforma-deploy
