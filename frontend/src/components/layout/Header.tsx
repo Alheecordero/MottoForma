@@ -65,7 +65,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/contacto"
-            className="motto-volume-button motto-volume-button-lime group hidden items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium shadow-sm transition-all duration-300 hover:-translate-y-0.5 sm:inline-flex"
+            className="group hidden items-center gap-1.5 rounded-full bg-paper px-5 py-2.5 text-sm font-medium text-ink shadow-sm transition-all duration-300 hover:bg-electric hover:text-paper sm:inline-flex"
           >
             Iniciar un proyecto
             <ArrowUpRight
@@ -103,7 +103,7 @@ export function Header() {
           <Link
             href="/contacto"
             onClick={() => setOpen(false)}
-            className="motto-volume-button motto-volume-button-lime mt-4 flex items-center justify-center gap-2 rounded-full px-5 py-4 font-medium"
+            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-paper px-5 py-4 font-medium text-ink"
           >
             Iniciar un proyecto <ArrowUpRight className="size-4" aria-hidden />
           </Link>

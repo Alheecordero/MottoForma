@@ -81,17 +81,20 @@ const promises = [
   [
     "Estrategia",
     "Dirección clara antes de diseñar",
-    "motto-balloon-purple",
+    "border-electric/35 bg-[linear-gradient(135deg,#ded6ff_0%,#fff_58%)]",
+    "bg-electric",
   ],
   [
     "Identidad",
     "Un sistema visual que se puede usar",
-    "motto-balloon-lime",
+    "border-lime/45 bg-[linear-gradient(135deg,#eaff9e_0%,#fff_58%)]",
+    "bg-lime",
   ],
   [
     "Presencia",
     "Web, Google y canales a tu nombre",
-    "motto-balloon-ink",
+    "border-electric/30 bg-[linear-gradient(135deg,rgb(109_74_255/0.16)_0%,#fff_58%)]",
+    "bg-ink",
   ],
 ] as const;
 
@@ -231,12 +234,13 @@ export function Hero() {
       </div>
 
       <div className="mx-auto grid w-full max-w-7xl gap-4 px-5 pb-14 sm:grid-cols-3 sm:px-8">
-        {promises.map(([title, text, tone]) => (
+        {promises.map(([title, text, tone, accent]) => (
           <div
             key={title}
             data-hero="pill"
-            className={`motto-balloon-pill rounded-[2rem] px-6 py-5 ${tone}`}
+            className={`relative overflow-hidden rounded-3xl border px-6 py-5 shadow-card ${tone}`}
           >
+            <span className={`absolute inset-x-6 top-0 h-1.5 rounded-b-full ${accent}`} aria-hidden="true" />
             <p className="font-display text-xl font-bold text-ink">{title}</p>
             <p className="mt-1 text-sm text-ink/70">{text}</p>
           </div>

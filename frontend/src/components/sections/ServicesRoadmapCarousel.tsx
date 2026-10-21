@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
@@ -16,16 +16,7 @@ function getCircularOffset(index: number, active: number, total: number) {
 
 export function ServicesRoadmapCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isCompact, setIsCompact] = useState(false);
   const total = services.length;
-
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 1023px)");
-    const update = () => setIsCompact(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
 
   const goPrev = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
@@ -53,25 +44,25 @@ export function ServicesRoadmapCarousel() {
         }
       }}
     >
-      <Reveal className="motto-dark-panel mb-10 flex flex-col justify-between gap-6 rounded-[2.25rem] px-7 py-8 text-paper md:flex-row md:items-end lg:px-10">
+      <Reveal className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <span className="inline-block rounded-full border border-lime/30 bg-lime/12 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-lime">
+          <span className="inline-block rounded-full bg-electric-soft px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-electric">
             Lo que hacemos
           </span>
-          <h2 className="mt-4 max-w-2xl font-display text-3xl font-bold tracking-tight text-paper sm:text-5xl">
+          <h2 className="mt-4 max-w-2xl font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
             Seis capacidades. La misma dirección.
           </h2>
-          <p className="mt-3 max-w-xl text-base leading-relaxed text-paper/70">
+          <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/70">
             Recorre el punto de partida y lo que construimos en cada una.
             Desliza la tarjeta o usa las flechas.
           </p>
         </div>
         <Link
           href="/servicios"
-          className="inline-flex items-center gap-2 self-start rounded-full bg-paper px-5 py-2.5 text-sm font-bold text-ink shadow-sm transition-all hover:-translate-y-0.5 hover:bg-electric hover:text-paper md:self-auto"
+          className="inline-flex items-center gap-2 self-start rounded-full border border-ink/10 bg-paper-soft px-5 py-2.5 text-sm font-bold text-ink shadow-sm transition-transform hover:-translate-y-0.5 md:self-auto"
         >
           Ver los servicios
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-4 w-4 text-electric" />
         </Link>
       </Reveal>
 
@@ -101,13 +92,9 @@ export function ServicesRoadmapCarousel() {
             const offset = getCircularOffset(index, activeIndex, total);
             const absOffset = Math.abs(offset);
             const isCenter = offset === 0;
-            if (absOffset > (isCompact ? 0 : 1)) return null;
+            if (absOffset > 2) return null;
 
             const Icon = service.icon;
-            const sideDirection = offset > 0 ? "+" : "-";
-            const xPosition = isCenter
-              ? "-50%"
-              : `calc(-50% ${sideDirection} clamp(160px, 21vw, 260px))`;
 
             return (
               <motion.article
@@ -123,12 +110,12 @@ export function ServicesRoadmapCarousel() {
                   if (!isCenter) setActiveIndex(index);
                 }}
                 animate={{
-                  x: xPosition,
+                  x: `calc(-50% + ${offset * 48}%)`,
                   y: "-50%",
-                  scale: isCenter ? 1 : 0.72,
-                  rotateY: isCenter ? 0 : offset * -18,
-                  z: isCenter ? 0 : -160,
-                  opacity: isCenter ? 1 : 0.58,
+                  scale: isCenter ? 1 : absOffset === 1 ? 0.84 : 0.7,
+                  rotateY: offset * -26,
+                  z: isCenter ? 0 : absOffset === 1 ? -160 : -310,
+                  opacity: isCenter ? 1 : absOffset === 1 ? 0.72 : 0.28,
                 }}
                 transition={{ type: "spring", stiffness: 240, damping: 26 }}
                 style={{
@@ -138,7 +125,7 @@ export function ServicesRoadmapCarousel() {
                   transformStyle: "preserve-3d",
                   zIndex: 20 - absOffset * 5,
                 }}
-                className={`w-[min(100%,780px)] rounded-[2rem] border-2 border-ink/20 bg-white p-7 shadow-[0_28px_60px_-20px_rgb(16_29_48/0.55)] sm:p-9 ${
+                className={`w-[min(100%,820px)] rounded-[2rem] border-2 border-ink/20 bg-white p-7 shadow-[0_28px_60px_-20px_rgb(16_29_48/0.55)] sm:p-9 ${
                   isCenter ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
                 }`}
               >
