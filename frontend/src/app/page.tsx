@@ -58,23 +58,23 @@ export default function HomePage() {
       <Hero />
 
       <section className="mx-auto max-w-7xl px-6 py-8">
-        <Reveal className="grid items-end gap-8 rounded-[2.25rem] border border-ink/10 bg-paper-soft px-7 py-10 sm:px-12 lg:grid-cols-12">
+        <Reveal className="motto-dark-panel grid items-end gap-8 rounded-[2.25rem] px-7 py-10 text-paper sm:px-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="text-sm font-semibold text-electric">{studioIntro.kicker}</p>
-            <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">
+            <p className="text-sm font-semibold text-lime">{studioIntro.kicker}</p>
+            <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-paper/55">
               {studioIntro.role}
             </p>
           </div>
           <div className="lg:col-span-7">
-            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-paper sm:text-4xl">
               {studioIntro.title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/75">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper/72">
               {studioIntro.body}
             </p>
             <Link
               href="/estudio"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-ink hover:text-electric"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-paper underline decoration-lime/70 underline-offset-4 hover:text-lime"
             >
               Conoce el estudio
               <ArrowRight className="h-4 w-4" />
@@ -187,10 +187,10 @@ export default function HomePage() {
 
               <Link
                 href={`/contacto?ruta=${route.id}`}
-                className={`relative mt-8 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold transition-colors ${
+                className={`motto-volume-button relative mt-8 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold transition-transform hover:-translate-y-0.5 ${
                   route.featured
-                    ? "bg-paper text-ink hover:bg-electric hover:text-paper"
-                    : "bg-ink text-paper hover:bg-electric"
+                    ? "motto-volume-button-lime"
+                    : "motto-volume-button-purple"
                 }`}
               >
                 {route.cta}
@@ -248,11 +248,11 @@ export default function HomePage() {
           </div>
           </ProcessTrack>
 
-          <Reveal className="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl border border-electric/35 bg-[linear-gradient(135deg,#ded6ff_0%,#fff_62%)] px-6 py-5 text-ink shadow-sm sm:flex-row sm:items-center">
+          <Reveal className="motto-dark-panel mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl px-6 py-5 text-paper sm:flex-row sm:items-center">
             <div className="flex items-center gap-3">
-              <ShieldCheck className="h-6 w-6 shrink-0 text-electric" />
-              <p className="text-sm">
-                <strong className="font-bold text-ink">
+              <ShieldCheck className="h-6 w-6 shrink-0 text-lime" />
+              <p className="text-sm text-paper/78">
+                <strong className="font-bold text-paper">
                   Todo queda a tu nombre:
                 </strong>{" "}
                 dominio, cuentas, archivos editables y accesos son 100 %
@@ -261,7 +261,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/servicios"
-              className="shrink-0 text-xs font-bold text-electric underline underline-offset-4"
+              className="shrink-0 text-xs font-bold text-lime underline underline-offset-4"
             >
               Ver preguntas frecuentes
             </Link>
@@ -269,26 +269,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-8">
+      <section className="motto-dark-panel mx-auto max-w-7xl rounded-[2.25rem] px-6 py-12 text-paper sm:px-8">
         <Reveal className="max-w-2xl">
-          <span className="inline-block rounded-full bg-electric px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-paper shadow-sm">
+          <span className="inline-block rounded-full border border-lime/30 bg-lime/12 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-lime">
             Nuestra perspectiva
           </span>
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-paper sm:text-5xl">
             Decisiones claras. Ejecución consistente.
           </h2>
         </Reveal>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {principles.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.08} className="h-full">
-            <article
-              className="motto-3d-card h-full rounded-3xl p-7"
-              style={cardTones[index % cardTones.length]}
-            >
-              <h3 className="font-display text-2xl font-bold text-ink">
+            <article className="h-full rounded-3xl border border-paper/12 bg-white/[0.06] p-7 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] transition-transform duration-300 hover:-translate-y-1">
+              <h3 className="font-display text-2xl font-bold text-paper">
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink/75">{item.text}</p>
+              <p className="mt-3 text-sm leading-relaxed text-paper/72">{item.text}</p>
             </article>
             </Reveal>
           ))}
@@ -299,53 +296,6 @@ export default function HomePage() {
 
       {/* 4. Proyectos — slots honestos sin casos inventados */}
       <HomeProjectsSection slots={projectSlots} />
-
-      {/* 5. CTA comercial de cierre — con ventana Glassmorphism oscura y logo 3D */}
-      <section className="mx-auto max-w-7xl px-6 pb-24 pt-6">
-        <Reveal
-          from="scale"
-          className="relative overflow-hidden rounded-[2.25rem] bg-[radial-gradient(circle_at_80%_18%,rgb(109_74_255/0.78),transparent_30%),radial-gradient(circle_at_68%_88%,rgb(166_255_0/0.24),transparent_30%),linear-gradient(135deg,#101d30_0%,#2b1b7a_56%,#101d30_100%)] px-7 py-14 text-paper sm:px-14 sm:py-16"
-        >
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-10 -top-10 h-72 w-72 rounded-full bg-electric/30 blur-3xl"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-16 right-40 h-56 w-56 rounded-full bg-lime/20 blur-3xl"
-          />
-
-          <div className="relative max-w-2xl">
-            <div>
-              <span className="inline-block rounded-full border border-paper/20 bg-paper/10 px-3.5 py-1 text-xs font-bold text-paper">
-                ¿Tienes un proyecto en mente?
-              </span>
-              <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight sm:text-5xl">
-                Construyamos una presencia que el negocio pueda sostener.
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-paper/80">
-                Cuéntanos qué estás creando o qué necesitas ordenar. Revisamos
-                el contexto y definimos el mejor punto de partida.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="/contacto"
-                  className="inline-flex items-center gap-2 rounded-full bg-paper px-7 py-4 text-sm font-bold text-ink transition-colors hover:bg-electric hover:text-paper"
-                >
-                  Iniciar un proyecto
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/servicios"
-                  className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-7 py-4 text-sm font-bold text-paper transition-colors hover:bg-white/15"
-                >
-                  Ver servicios y entregables
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
     </>
   );
 }

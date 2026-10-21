@@ -6,15 +6,18 @@ import { FooterYear } from "./FooterYear";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-ink text-paper">
-      {/* Halo sutil de fondo para que el glassmorphism oscuro tenga refracción */}
+    <footer className="relative overflow-hidden bg-[#05070d] px-4 pb-5 pt-8 text-paper sm:px-6">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 right-12 h-64 w-64 rounded-full bg-electric/25 blur-3xl"
+        className="pointer-events-none absolute -top-24 right-12 h-72 w-72 rounded-full bg-electric/20 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-28 left-10 h-72 w-72 rounded-full bg-lime/10 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="motto-footer-glass relative mx-auto w-full max-w-7xl overflow-hidden rounded-[2.25rem] px-5 py-12 sm:px-8 lg:px-10">
+        <div className="relative z-10 grid gap-12 md:grid-cols-[1.35fr_0.85fr_0.85fr_0.9fr]">
           <div>
             <div className="inline-flex items-center gap-3.5">
               <Image
@@ -33,6 +36,12 @@ export function Footer() {
               Estudio de marca, sitios web y presencia digital. Estrategia,
               identidad y tecnología en la misma dirección.
             </p>
+            <Link
+              href="/contacto"
+              className="motto-volume-button motto-volume-button-lime mt-7 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-sm transition-all hover:-translate-y-0.5"
+            >
+              Iniciar conversación <ArrowUpRight className="size-4" aria-hidden />
+            </Link>
           </div>
 
           <nav aria-label="Explorar">
@@ -44,8 +53,9 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-paper/80 transition-colors hover:text-white"
+                    className="group inline-flex items-center gap-2 text-paper/78 transition-colors hover:text-white"
                   >
+                    <span className="h-1.5 w-1.5 rounded-full bg-lime/0 transition-colors group-hover:bg-lime" />
                     {item.label}
                   </Link>
                 </li>
@@ -83,12 +93,12 @@ export function Footer() {
             </p>
             <ul className="mt-4 space-y-2.5 text-[15px] text-paper/80">
               <li>
-                <Link href="/privacidad" className="hover:text-white">
+                <Link href="/privacidad" className="transition-colors hover:text-white">
                   Aviso de privacidad
                 </Link>
               </li>
               <li>
-                <Link href="/terminos" className="hover:text-white">
+                <Link href="/terminos" className="transition-colors hover:text-white">
                   Términos
                 </Link>
               </li>
@@ -96,7 +106,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-paper/15 pt-7 text-[13px] text-paper/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative z-10 mt-14 flex flex-col gap-3 border-t border-paper/15 pt-7 text-[13px] text-paper/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © <FooterYear /> {siteConfig.legalName}. Todos los derechos
             reservados.

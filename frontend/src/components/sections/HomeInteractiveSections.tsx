@@ -37,63 +37,66 @@ export function HomeFaqSection({ faqs }: { faqs: readonly FaqItem[] }) {
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
-      <Reveal className="flex items-end justify-between gap-6">
-        <div>
-          <span className="inline-block rounded-full bg-electric px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-paper shadow-sm">
-            FAQ
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-bold text-ink sm:text-4xl">
-            Preguntas frecuentes
-          </h2>
+      <Reveal className="motto-dark-panel rounded-[2.25rem] px-6 py-8 text-paper sm:px-8 sm:py-10">
+        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <span className="inline-block rounded-full border border-lime/30 bg-lime/12 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-lime">
+              FAQ
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold text-paper sm:text-4xl">
+              Preguntas frecuentes
+            </h2>
+          </div>
+          <Link
+            href="/contacto"
+            className="inline-flex items-center gap-2 self-start rounded-full bg-paper px-5 py-3 text-sm font-bold text-ink transition-colors hover:bg-lime sm:self-auto"
+          >
+            Hablar con Mottoforma
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-        <Link
-          href="/contacto"
-          className="hidden text-sm font-bold text-ink hover:text-electric sm:inline"
-        >
-          Hablar con Mottoforma
-        </Link>
-      </Reveal>
 
-      <Reveal className="mt-8 grid gap-4 md:grid-cols-2">
-        {faqs.map((faq, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <article
-              key={faq.q}
-              className={`rounded-3xl border p-1 shadow-sm transition-colors ${
-                isOpen
-                  ? "border-electric/45 bg-[linear-gradient(135deg,#ded6ff_0%,#fff_62%)]"
-                  : "border-ink/10 bg-paper-soft"
-              }`}
-            >
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                className="flex w-full items-start justify-between gap-5 rounded-[1.25rem] px-5 py-5 text-left"
+        <div className="mt-8 grid gap-3 md:grid-cols-2">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <article
+                key={faq.q}
+                className={`rounded-3xl border p-1 transition-all duration-300 hover:-translate-y-1 ${
+                  isOpen
+                    ? "border-lime/40 bg-white/10"
+                    : "border-paper/10 bg-white/[0.05] hover:border-paper/20"
+                }`}
               >
-                <span className="font-display text-lg font-bold text-ink">
-                  {faq.q}
-                </span>
-                <span
-                  className={`mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${
-                    isOpen ? "bg-electric text-paper" : "bg-paper text-ink"
-                  }`}
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                  className="flex w-full items-start justify-between gap-5 rounded-[1.25rem] px-5 py-5 text-left"
                 >
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                    aria-hidden
-                  />
-                </span>
-              </button>
-              {isOpen && (
-                <div className="px-5 pb-5 text-sm leading-relaxed text-ink/75">
-                  {faq.a}
-                </div>
-              )}
-            </article>
-          );
-        })}
+                  <span className="font-display text-lg font-bold text-paper">
+                    {faq.q}
+                  </span>
+                  <span
+                    className={`mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${
+                      isOpen ? "bg-lime text-ink" : "bg-paper/10 text-paper"
+                    }`}
+                  >
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                      aria-hidden
+                    />
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="px-5 pb-5 text-sm leading-relaxed text-paper/72">
+                    {faq.a}
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
       </Reveal>
     </section>
   );
